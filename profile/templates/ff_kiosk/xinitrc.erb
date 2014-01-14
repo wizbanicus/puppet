@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+openbox &
+xautolock -time 1 -locker "/home/<%= @username %>/.kill_ff.sh" &
+/home/<%= @username %>/.run_ff.sh

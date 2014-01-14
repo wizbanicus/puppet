@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+SCREENWIDTH=$(xrandr | grep current | sed -e 's/^.*current //g' | sed -e 's/ .*//g')
+while true
+do
+  sleep 1
+  if ! pgrep firefox
+   then
+    firefox <%= @my_url %> &
+    sleep 5
+  fi
+
+  ff_id="$(wmctrl -l | grep -i --max-count=1 firefox | sed -e 's/ .*$//g')"
+  if [[ "$ff_id" == '' ]];then
+    sleep 0.1
+    ff_id="$(wmctrl -l | grep -i --max-count=1 firefox | sed -e 's/ .*$//g')"
+  fi
+
+  ff_width=$(xwininfo -id $ff_id | grep Width | sed -e 's/[^0-9]//g')
+  ff_ms=$(xwininfo -id $ff_id | grep 'Map State' | sed -e 's/^.*: //g')
+
+  if [[ $ff_ms != 'IsViewable' ]];then
+    killall firefox
+  fi
+
+  if [ $ff_width -lt $SCREENWIDTH ];then
+   wmctrl -i -r $ff_id -b toggle,fullscreen
+  fi
+done
+
