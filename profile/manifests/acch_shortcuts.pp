@@ -1,4 +1,4 @@
-class profile::shortcuts {
+class profile::acch_shortcuts {
   shortcuts::linkdirs { ['programming', 'office', 'games', 'video', 'sound', 'animation',
                       '3D Design', 'web design', 'visual design', 'internet']:}
 
