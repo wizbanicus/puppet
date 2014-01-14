@@ -1,0 +1,25 @@
+#!/bin/bash
+# run the login maps drives script for a user
+# then map system required drives too
+SCRIPTDIR='<%= @scriptdir %>'
+SCRIPT='<%= @usrscript %>'
+
+function map_the_drives {
+  while [ ! $# == 0 ];do
+    if [ -f "${SCRIPTDIR}/${1}/${SCRIPT}" ];then
+      /bin/bash "${SCRIPTDIR}/${1}/${SCRIPT}" $1;
+    fi
+    shift
+  done
+}
+
+if [ $# == 0 ]; then
+  map_the_drives $(users)
+else
+  map_the_drives $1
+fi
+<%- if @depot_user -%>
+# then map the depot regardless
+mount_smbfs //<%= @depot_user %>:<%= @depot_pw %>@<%= @depot_server %>/<%= @depot_share %> <%= @depot_mount %>
+<%- end -%>
+exit 0

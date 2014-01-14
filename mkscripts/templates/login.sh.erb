@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# login script
+# set login hooks to run on login, runs scripts in user directory
+# as root on behalf of user.
+#
+for script in $(ls <%= @indir %>$1);do
+  /usr/bin/env bash <%= @indir %>$1/$script
+done
+

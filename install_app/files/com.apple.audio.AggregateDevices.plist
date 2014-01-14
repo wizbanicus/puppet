@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>com.apple.audio.AggregateDevice.com.adobe.medialayer.coreaudiohost:After Effects 11.0</key>
+	<dict>
+		<key>name</key>
+		<string>After Effects 11.0</string>
+		<key>private</key>
+		<integer>0</integer>
+		<key>subdevices</key>
+		<array/>
+		<key>uid</key>
+		<string>com.adobe.medialayer.coreaudiohost:After Effects 11.0</string>
+	</dict>
+	<key>com.apple.audio.AggregateDevice.com.adobe.medialayer.coreaudiohost:Premiere Pro 6.0</key>
+	<dict>
+		<key>name</key>
+		<string>Premiere Pro 6.0</string>
+		<key>private</key>
+		<integer>0</integer>
+		<key>subdevices</key>
+		<array/>
+		<key>uid</key>
+		<string>com.adobe.medialayer.coreaudiohost:Premiere Pro 6.0</string>
+	</dict>
+	<key>com.apple.audio.CoreAudio.AggregateDeviceUIDList</key>
+	<array>
+		<string>com.adobe.medialayer.coreaudiohost:Premiere Pro 6.0</string>
+		<string>com.adobe.medialayer.coreaudiohost:After Effects 11.0</string>
+	</array>
+</dict>
+</plist>

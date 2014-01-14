@@ -1,0 +1,76 @@
+#!/bin/bash
+# RESTORE SKEL
+# This script runs on logout by root on behalf of a user.
+# If there is a backup directory passed in, then it moves the content of the
+# users dir to the a date stamped directory in the backup dir.
+# if kill directories are passed in, it deletes them first.
+# This can be handy for doing things like backing up the
+# user's files, but deleting the rest of the profile.
+# If we pass in some links, these get removed at the start and re-added at the end.
+# If we pass in some hidden files and we asked for a backup,
+# then the hidden files specified will be made unhidden in the backup.
+# If we pass in backup days, then just before backing up we'll tidy the
+# backupdir by removing files older than backupdays.
+# ie. .Trash
+# Finally if we pass in mountpoints, they get unmounted before we start moving things.
+#
+THIS_SESSION="$(date "+%Y_%m_%d-%H-%M")"
+<% if @links -%>
+  <%- @links.each do | lnk, tgt | -%>
+# remove the link
+rm <%= lnk %>
+  <%- end -%>
+<% end -%>
+#
+<% if @mountpoints -%>
+  <%- @mountpoints.each do | m | -%>
+umount <%= m %>
+rmdir <%= m %>
+# making sure the directory was successfully unmounted and removed, otherwise abort the script
+  if [ -d <%= m %> ] ; then
+    exit 0
+  fi
+  <%- end -%>
+<% end -%>
+#
+<% if @kildirs -%>
+  <%- @kildirs.each do |kd| -%>
+rm -rf <%= kd %>
+  <%- end %>
+<% end -%>
+#
+<% if @backupdir -%>
+  <%- if @backupdays -%>
+# removing backups older than <%= @backupdays %>
+  if [ -d <%= @backupdir %> ]; then
+    find <%= @backupdir %>/ -depth 1 -mtime +<%= @backupdays %> | xargs -I '{}' rm -rf '{}'
+  fi
+  <%- end -%>
+mkdir <%= @backupdir %>/$THIS_SESSION/
+# backing up files
+rsync -r <%= @userhome %> <%= @backupdir %>/$THIS_SESSION/
+  <%- if @hiddenfiles -%>
+    <%- @hiddenfiles.each do | key, val | -%>
+# making hidden files not hidden on the backup
+rsync -r <%= key %> <%= @backupdir %>/<%= val %>
+    <%- end -%>
+  <%- end -%>
+<% end -%>
+#
+# lets do the actual restoration of the skel
+rsync -r --del --force <%= @skel %>/ <%= @userhome %>
+#
+<% if @links -%>
+  <%- @links.each do | lnk, tgt | -%>
+# add the link again
+ln -s <%= lnk %> <%= tgt %>
+  <%- end -%>
+<% end -%>
+#
+# and give the user permissions to their home
+chown -R <%= @user %> <%= @userhome %>
+<%- if @backupdir -%>
+# finally ensure we can see the backups
+chgrp -R <%= @user %> <%= @backupdir %>/$THIS_SESSION
+chmod -R 750 <%= @backupdir %>/$THIS_SESSION
+<%- end -%>

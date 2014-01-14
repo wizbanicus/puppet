@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# MAP MY DRIVES
+# script to map my drives
+# takes a smb_user, smb_pw, server, and a hash of share and mountpoints 
+#
+<% @shares.each do | key, val | -%>
+if [ ! -d <%= val %> ];then
+  sudo -u $1 mkdir -p <%= val %>
+fi
+sudo -u $1 mount_smbfs //<%= @smbuser %>:<%= @smbpw %>@<%= @server %>/<%= key %> <%= val %>
+<% end %>
