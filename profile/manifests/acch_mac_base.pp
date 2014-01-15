@@ -14,6 +14,6 @@ class profile::acch_mac_base {
 #  include install_app::libreoffice
 #  include install_app::123dmake
 #  include install_app::packages
-#  include install_app::vlc
+  include install_app::vlc
   include install_app::firefox
 }
