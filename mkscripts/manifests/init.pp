@@ -3,9 +3,9 @@
 # sets up some login scripts to be run by root for users
 class mkscripts (
   $users = [],
-  $mgdir = "/Library/Management/",
-  $indir = "/Library/Management/login.d/",
-  $outdir = "/Library/Management/logout.d/"
+  $mgdir = '/Library/Management/',
+  $indir = '/Library/Management/login.d/',
+  $outdir = '/Library/Management/logout.d/'
 )
 {
   ::mkscripts::for_users{ [$users] :
@@ -13,7 +13,7 @@ class mkscripts (
     outdir  => $outdir,
     require => [ File[$indir], File[$outdir] ],
   }
-  file{"$mgdir":
+  file{"${mgdir}":
     ensure   => directory,
     recurse  => true,
     purge    => true,
