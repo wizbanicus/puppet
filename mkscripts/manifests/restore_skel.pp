@@ -2,7 +2,7 @@
 # removes a user accounts' files and replaces them with files froma  skel dir
 #
 define mkscripts::restore_skel (
-  $user, 
+  $user=$name, 
   $outdir = $::mkscripts::outdir,
   $skel,
   $userhome,

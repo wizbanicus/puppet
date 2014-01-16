@@ -31,6 +31,9 @@ rmdir <%= m %>
     exit 0
   fi
   <%- end -%>
+# also bring down the network, just to be sure (paranoid)
+ifconfig en0 down
+ifconfig en1 down
 <% end -%>
 #
 <% if @kildirs -%>

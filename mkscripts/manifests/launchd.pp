@@ -16,5 +16,6 @@ $plist=$name,
   exec { "${plist}":
     command   => "/bin/launchctl load -w /Library/LaunchDaemons/${plist}",
     subscribe => File["${plist}"],
+    refreshonly => true,
   }
 }

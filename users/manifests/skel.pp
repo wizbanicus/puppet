@@ -4,13 +4,11 @@
 # along with potential backups of certain user files.
 # the initial template is created from the system template user.
 define users::skel (
-  $user,
   $skel,
-  $dir,
-  $newskel,
+  $newskel = $name,
 )
 {
-  file {"${dir}/${newskel}":
+  file {"${newskel}":
     ensure  => directory,
     recurse => remote,
     source  => $skel,
