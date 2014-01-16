@@ -3,7 +3,7 @@
 # Can't be used with the users home or skel directory as this is already a file resource
 # 
 define users::add_files (
-  $dir,
+  $dir=$name,
   $src,
 )
 {
