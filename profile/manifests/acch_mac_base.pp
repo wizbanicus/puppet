@@ -1,6 +1,6 @@
 class profile::acch_mac_base {
 #  include install_app::chrome
-#  include install_app::unity
+  include install_app::unity
   include install_app::scratch
 #  class {'flash_plugin':
 #    auto_update_disable       => 0,

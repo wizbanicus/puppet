@@ -1,14 +1,7 @@
-# Class: install_app::javaforosx_2013_05
-# 
-# Installs java
-#
 class install_app::javaforosx_2013_05 {
-  case $operatingsystem {
-    Darwin: {
-    install_app { 'JavaForOSX2013-05.dmg': }
-    }
-    default: {
-      notify {"the operating system ${operatingsystem} is not supported":}
+  if !$::utpkg_installed_javaforosx_2013_05_pkg {
+    install_app { 'javaforosx_2013_05.pkg':
+      my_provider => 'utpkg',
     }
   }
-}  
+}

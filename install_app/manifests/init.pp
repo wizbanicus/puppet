@@ -35,10 +35,22 @@ define install_app($src_dir = false, $my_provider = false, $uninstall_old = fals
     default => $my_provider,
   }
 
-  package { $name:
-    ensure   => installed,
-    provider => $provider_real,
-    source   => "${src_dir_real}/${name}",
+  if $provider_real == 'utpkg' {
+    notify{ "careful the package ${name} must be a .pkg file!": }
+    exec { "utpkg_${name}": 
+      command => "/usr/sbin/installer -allowUntrusted -pkg ${src_dir_real}/${name} -target / ;", 
+    } 
+    file { "/var/db/.puppet_utpkg_installed_${name}":
+      ensure   => file,
+      require  => Exec["utpkg_${name}"],
+    }
+  }
+  else {
+    package { $name:
+      ensure   => installed,
+      provider => $provider_real,
+      source   => "${src_dir_real}/${name}",
+    }
   }
 }
 
