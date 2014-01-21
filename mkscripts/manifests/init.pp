@@ -17,6 +17,7 @@ class mkscripts (
     ensure   => directory,
     recurse  => true,
     purge    => true,
+    force    => true,
   }
   file{"${mgdir}login.sh":
     ensure  => present,
@@ -38,6 +39,7 @@ class mkscripts (
     mode    => 700,
     recurse => true,
     purge   => true,
+    force   => true,
   }
   file{$outdir:
     ensure  => directory,
@@ -45,6 +47,7 @@ class mkscripts (
     mode    => 700,
     recurse => true,
     purge   => true,
+    force   => true,
   }
   file{"loginwindow":
     path    => "/var/root/Library/Preferences/com.apple.loginwindow.plist",

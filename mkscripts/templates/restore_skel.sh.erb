@@ -18,7 +18,7 @@ THIS_SESSION="$(date "+%Y_%m_%d-%H-%M")"
 <% if @links -%>
   <%- @links.each do | lnk, tgt | -%>
 # remove the link
-rm <%= lnk %>
+rm <%= tgt %>
   <%- end -%>
 <% end -%>
 #
@@ -55,7 +55,7 @@ rsync -r <%= @userhome %> <%= @backupdir %>/$THIS_SESSION/
   <%- if @hiddenfiles -%>
     <%- @hiddenfiles.each do | key, val | -%>
 # making hidden files not hidden on the backup
-rsync -r <%= key %> <%= @backupdir %>/<%= val %>
+rsync -r <%= @userhome %>/<%= key %> <%= @backupdir %>/$THIS_SESSION/<%= val %>
     <%- end -%>
   <%- end -%>
 <% end -%>
@@ -77,3 +77,8 @@ chown -R <%= @user %> <%= @userhome %>
 chgrp -R <%= @user %> <%= @backupdir %>/$THIS_SESSION
 chmod -R 750 <%= @backupdir %>/$THIS_SESSION
 <%- end -%>
+<%- if @mountpoints -%>
+# bring network back up
+ifconfig en0 up
+ifconfig en1 up
+<%- end-%>

@@ -7,9 +7,11 @@ define mkscripts::restore_skel (
   $skel,
   $userhome,
   $backupdir = false,
+  $backupdays = false,
   $links = false,
   $mountpoints = false,
   $kildirs = false,
+  $hiddenfiles = false,
 )
 {
   file{"${outdir}${user}/restore_skel.sh":

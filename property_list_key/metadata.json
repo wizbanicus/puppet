@@ -1,0 +1,82 @@
+{
+  "name": "glarizza-property_list_key",
+  "version": "0.2.0",
+  "source": "UNKNOWN",
+  "author": "Gary Larizza <gary@puppetlabs.com>",
+  "license": "Apache License, Version 2.0",
+  "summary": "Property List key/value management in Puppet on OS X",
+  "description": "A simple type/provider for modeling property list key/values.",
+  "project_page": "http://github.com/glarizza/puppet-property_list_key",
+  "dependencies": [
+
+  ],
+  "types": [
+    {
+      "name": "property_list_key",
+      "doc": "A Puppet type to model property list files",
+      "properties": [
+        {
+          "name": "ensure",
+          "doc": "The basic property that the resource should be in.\n\nValid values are `present`, `absent`. "
+        },
+        {
+          "name": "value",
+          "doc": "The value of the specified key\n\n"
+        }
+      ],
+      "parameters": [
+        {
+          "name": "name",
+          "doc": "Arbitrary namevar\n\n"
+        },
+        {
+          "name": "key",
+          "doc": "The name of the key for which we're ensuring absent/present\n\n"
+        },
+        {
+          "name": "path",
+          "doc": "The path of the plist file\n\n"
+        },
+        {
+          "name": "value_type",
+          "doc": "The value type for the plist key's value\n\nValid values are `string`, `boolean`, `array`, `hash`, `integer`, `real`. "
+        }
+      ],
+      "providers": [
+        {
+          "name": "cfpropertylist",
+          "doc": "An OS X provider for creating property list keys and values\n\n* Default for `feature` == `cfpropertylist`."
+        },
+        {
+          "name": "rubycocoa",
+          "doc": "An OS X provider for creating property list keys and values\n\n* Default for `feature` == `rubycocoa`."
+        }
+      ]
+    }
+  ],
+  "checksums": {
+    "Gemfile": "fe54775c3d7fd6670dcd981a82b3113d",
+    "Gemfile.lock": "9f5f4e548533f6ca38bfba83326f362e",
+    "Modulefile": "57ff561d0c2df924056fedc768665536",
+    "README.markdown": "e47d0600eef3ab3d4a98669e99019c6e",
+    "Rakefile": "b518b7473fe57dccc13cd4cea07d122b",
+    "lib/puppet/feature/cfpropertylist.rb": "17e206e7d1d4b5ef69198e326343733f",
+    "lib/puppet/feature/macadmin.rb": "ec74137641451c3170fd39df7bb78728",
+    "lib/puppet/feature/rubycocoa.rb": "c13411e58b4f8f92249bb1a89e9774b5",
+    "lib/puppet/provider/property_list_key/cfpropertylist.rb": "2faf1a82da6c986414841f1b61717fa4",
+    "lib/puppet/provider/property_list_key/rubycocoa.rb": "3a1f21ab211d2a2ef2e7c1506e6b75f7",
+    "lib/puppet/type/property_list_key.rb": "f8ae1aa2a3b230276ea32773413dcc25",
+    "manifests/init.pp": "9616c4471380c31861eab2825ac25012",
+    "spec/spec_helper.rb": "a55d1e6483344f8ec6963fcb2c220372",
+    "spec/unit/puppet/provider/property_list_key/cfpropertylist_spec.rb": "9293f020651b07eb5c3ec34b9d687740",
+    "spec/unit/puppet/provider/property_list_key/rubycocoa_spec.rb": "17e03f905edd8088fb8618258224e7a4",
+    "spec/unit/puppet/type/property_list_key_spec.rb": "662af2f3a39076342d4669a4531c128d",
+    "test.rb": "655e46d4547eaddf55a77821a810ef20",
+    "tests/absent.pp": "252d8176c474633e8b526096dbe433d7",
+    "tests/cfp.pp": "06f8d7dd9366dd23cf89d554ce698c67",
+    "tests/init.pp": "bf5449b6d4185208ce5c325df1a3c1b1",
+    "tests/property_list.pp": "e824df68004c9a84a97cf0248aa1d2bb",
+    "tests/zero.pp": "7de794dfeb2a747f8f354c6c5a07a5b3",
+    "version.yaml": "af85785d0e5ce86bdae83ef8a933d2eb"
+  }
+}

@@ -21,7 +21,6 @@ define users::create (
     uid        => $uid,
     gid        => $gid,
   }
-  notify { "${home}": }
   file{"/Users/${user}":
     ensure  => directory,
     owner   => $user,
