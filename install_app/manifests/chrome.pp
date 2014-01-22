@@ -9,4 +9,3 @@ class install_app::chrome {
     }
   }
 }
-
