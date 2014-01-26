@@ -4,9 +4,6 @@
 define users::create (
   $user=$name,
   $uid,
-  $pwd,
-  $salt,
-  $itns,
   $gid,
   $skel,
   $home = "/Users/${name}",
@@ -15,9 +12,6 @@ define users::create (
   user { "${user}":
     ensure     => present,
     home       => "${home}",
-    password   => "${pwd}",
-    salt       => "${salt}",
-    iterations => "${itns}",
     uid        => "${uid}",
     gid        => "${gid}",
   }
@@ -26,7 +20,5 @@ define users::create (
     owner   => "${user}",
     mode    => 755,
     require => User["${user}"],
-    source  => "${skel}",
-    recurse => remote,
   }
 }
