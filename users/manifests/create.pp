@@ -14,19 +14,19 @@ define users::create (
 {
   user { "${user}":
     ensure     => present,
-    home       => $home,
-    password   => $pwd,
-    salt       => $salt,
-    iterations => $itns,
-    uid        => $uid,
-    gid        => $gid,
+    home       => "${home}",
+    password   => "${pwd}",
+    salt       => "${salt}",
+    iterations => "${itns}",
+    uid        => "${uid}",
+    gid        => "${gid}",
   }
   file{"/Users/${user}":
     ensure  => directory,
-    owner   => $user,
+    owner   => "${user}",
     mode    => 755,
     require => User["${user}"],
-    source  => $skel,
+    source  => "${skel}",
     recurse => remote,
   }
 }

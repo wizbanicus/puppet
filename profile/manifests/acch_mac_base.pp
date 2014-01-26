@@ -23,4 +23,5 @@ class profile::acch_mac_base {
 #  include install_app::mindstorms
   include install_app::javaforosx_2013_05
   include install_app::osx_upd_combo10_8_5
+  include install_app::comiclife
 }
