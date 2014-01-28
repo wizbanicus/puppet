@@ -24,4 +24,12 @@ class profile::acch_mac_base {
   include install_app::javaforosx_2013_05
   include install_app::osx_upd_combo10_8_5
   include install_app::comiclife
+  include install_app::gimp
+  include install_app::maya_installer
+  include install_app::paintbrush
+  include install_app::blender
+  class {'install_app::x11':}
+#  class {'install_app::inkscape':
+#    require => Class['install_app::x11'],
+#  }
 }
