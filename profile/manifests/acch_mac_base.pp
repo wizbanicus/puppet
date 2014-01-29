@@ -29,6 +29,7 @@ class profile::acch_mac_base {
   include install_app::paintbrush
   include install_app::blender
   class {'install_app::x11':}
+  include install_app::lego_dd
 #  class {'install_app::inkscape':
 #    require => Class['install_app::x11'],
 #  }
