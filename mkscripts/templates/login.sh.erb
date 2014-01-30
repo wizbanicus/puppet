@@ -6,4 +6,5 @@
 for script in $(ls <%= @indir %>$1);do
   /usr/bin/env bash <%= @indir %>$1/$script
 done
-
+# finally run puppet
+puppet agent --test
