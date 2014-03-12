@@ -5,7 +5,7 @@
 class install_app::firefox {
   case $operatingsystem {
     Darwin: {
-    install_app { 'Firefox 26.0.dmg':
+    install_app { 'Firefox 27.0.1.dmg':
       my_provider  => 'appdmg',
       }
     }
